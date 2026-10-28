@@ -1,0 +1,2 @@
+# Optional: full cover preview and PNG export. Tested with this version.
+Pillow==11.1.0

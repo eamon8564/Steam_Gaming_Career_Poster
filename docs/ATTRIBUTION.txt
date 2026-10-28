@@ -1,0 +1,28 @@
+ATTRIBUTION AND REFERENCES
+
+Game names, logos and cover artwork belong to their respective owners.
+Included covers are cached from Steam's public artwork CDN for this
+educational demonstration; this package claims no ownership of them.
+Source patterns:
+https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/<appid>/header.jpg
+https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/<appid>/library_600x900.jpg
+
+Steam identity and library integration:
+https://steamcommunity.com/dev
+https://partner.steamgames.com/doc/webapi/IPlayerService
+
+Visual inspiration: Steam career collages, including Xiaoheihe's sharing
+tool. Treemaps and squarified layouts are established visualisation
+techniques, not a claim of a newly invented algorithm.
+Squarified Treemaps: Bruls, Huizing, and van Wijk (2000).
+
+Python standard library: Tkinter, JSON, pathlib, urllib, threading and
+queue, among others. Pillow 11.1.0 is an optional third-party dependency.
+All demonstration playtimes and activity dates are fictional.
+
+AI assistance:
+ChatGPT/Codex assisted with planning, code generation, debugging,
+documentation, tests and preparation of submission materials. The
+submitted implementation and these notes were prepared with that help.
+This disclosure does not establish compliance with the course's policy;
+the student must follow the applicable assessment instructions.

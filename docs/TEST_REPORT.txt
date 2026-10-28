@@ -1,0 +1,67 @@
+SUBMISSION VERIFICATION REPORT
+Prepared: 28 October 2026 (Australia/Sydney task date)
+
+Environment actually used:
+Windows; Python 3.12.13 from E:\Anaconda\envs\comp5310\python.exe;
+Pillow 11.1.0; Tkinter/Tcl/Tk with a graphical desktop.
+
+Checks run from the clean submitted project folder:
+1. python -m unittest discover -s tests -v
+   PASS: 26 tests covering area conservation/non-overlap, grouping without
+   discarded time, large game counts, date boundaries and unknown dates,
+   API response parsing/network failures, cache fallback, both orientations,
+   density, PNG/SVG dimensions, and aspect-preserving image cropping.
+2. python tests/verify_auth.py
+   PASS: 4 simulated authentication tests, including callback-state validation,
+   signature-verification flow, server cleanup, cancellation, timeout and
+   browser-opening failure. These use local loopback and mocked Steam replies.
+3. python tests/verify_gui.py --capture
+   PASS: actual Tk window, offline demo, filtering, grouping, invalid settings,
+   export dialogs, PNG/SVG files, resize, density/orientation switching,
+   scroll, missing dates and empty data. Captured app_screenshot.png.
+4. python -S tests/verify_gui.py
+   PASS: actual GUI without site-packages, exercising the standard-library
+   fallback and SVG export without Pillow.
+5. Optional key check with environment cleared
+   PASS: no submitted key exists; missing-key message offers Demo Mode.
+6. Exported and visually inspected the final demo poster and app screenshot.
+
+The offline demo has 15 owned games, 12 with positive playtime, and 98,850
+minutes (1,647.5 hours). Only artwork for the supplied demo is packaged.
+
+Archive relocation/entry-point verification is recorded in the delivery-level
+ARCHIVE_VERIFICATION.txt included alongside this project.
+
+Limits of verification:
+No real Steam account login or external API availability was retested for this
+submission. No other operating system or tutor computer was available. Tests
+support the stated checks; they do not guarantee every input or machine.
+
+Windows launcher follow-up verification (28 October 2026):
+PASS: launch.cmd with system Python absent from PATH selects the owner's
+existing comp5310 interpreter; explicit STEAM_POSTER_PYTHON also works.
+PASS: script folder paths containing spaces work.
+PASS: controlled Python startup failure is shown and saved to startup.log.
+PASS: invalid interpreter override produces a visible explanation.
+PASS: launcher executes packaged main.py with controlled automatic closure,
+opens a real Tk GUI, loads the offline demo, and exports SVG.
+The test did not register a Steam key or access any account.
+
+Functional folder reorganisation verification:
+Application source now lives under src/ui, src/core, src/poster, src/steam
+and src/common. Documentation and dependencies moved to docs/ and setup/.
+PASS: 26 unit tests, including three resource/key path regression checks.
+PASS: four simulated authentication tests.
+PASS: real Tk GUI smoke test with Pillow and standard-library-only fallback.
+Personal steam_api_key.txt is still read from the root beside main.py.
+
+Headless and personal-interpreter follow-up:
+PASS: the updated unit suite has 31 tests, including five checks for explicit
+terminal mode, missing Tkinter, absent display, layout options, and PNG failure
+without Pillow. Actual Python -S execution exported the offline SVG without
+site-packages. Display unavailability was simulated locally; this does not
+claim an actual run on Sahara/Linux/Python 3.14.
+PASS: actual GUI smoke test after the entry-point change.
+PASS: Windows launcher default, explicit variable, persistent python_path.txt,
+invalid configured path, failure log, and actual packaged GUI execution.
+No personal python_path.txt or API key is included in the archive.

@@ -1,0 +1,21 @@
+# Personal credentials and machine-specific configuration
+steam_api_key.txt
+.env
+.env.*
+setup/python_path.txt
+.venv/
+venv/
+
+# Generated files and runtime-only artwork; bundled demo covers are tracked.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+output/*
+!output/README.txt
+cache/*
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

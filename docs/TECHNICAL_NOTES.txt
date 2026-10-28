@@ -1,0 +1,46 @@
+TECHNICAL NOTES AND RUBRIC EVIDENCE
+
+Problem: Steam libraries contain many games and raw playtime numbers.
+This program turns those records into an inspectable, shareable poster.
+Target users: Steam players interested in their gaming habits.
+
+Data flow:
+JSON / Steam API -> Game objects -> GameLibrary -> mode selection ->
+ranked/grouped PosterItems -> layout -> shared drawing scene -> GUI/export.
+Playtime stays in minutes until display, avoiding repeated rounding.
+
+Advanced topic 1 — File I/O:
+utils.load_demo reads UTF-8 JSON, validates its shape and constructs
+objects. The renderer writes self-contained SVG and optional PNG files.
+Artwork cache files are reused to avoid unnecessary downloads.
+
+Advanced topic 2 — Exception handling:
+Invalid JSON, fields and missing files become useful error messages.
+SteamClient translates HTTP/network failures into SteamError. Invalid
+settings retain the previous valid poster. Damaged artwork falls back
+to coloured tiles. Exceptions protect the user's workflow.
+
+Classes and structure:
+Game holds and validates a single record. GameLibrary handles totals and
+ranking. PosterConfig validates settings. PosterRenderer shares one
+scene between preview and exports. GamingJourneyApp connects GUI events
+to those modules. Network workers send queued results to the GUI thread.
+
+Layout:
+Squarified treemap groups adjacent weights into rows while trying to
+improve the worst rectangle aspect ratio. Landscape weights are actual
+lifetime minutes. Vertical uses max(1, 9 * minutes / largest_minutes),
+allowing a lower bound on readability, and increases available height.
+Top N grouping sums all omitted minutes into an explicitly labelled
+Other item. It does not discard those minutes or pretend Other is a game.
+
+Image handling:
+Select a cached portrait/header image close to the target aspect ratio.
+Pillow ImageOps.fit uses proportional scaling and centre cropping.
+SVG uses preserveAspectRatio with slice. Neither path stretches images.
+
+Scope:
+Desktop GUI, data processing, live Steam integration and image export.
+No LLM, recommendation engine, cloud backend, or database is included.
+No claim is made that existing tests guarantee all possible inputs or
+that Steam authentication works on every network and privacy setting.
